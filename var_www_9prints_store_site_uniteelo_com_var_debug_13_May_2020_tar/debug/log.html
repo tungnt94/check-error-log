@@ -1,0 +1,491 @@
+<style>
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#debug-log,
+#debug-log * {
+    box-sizing: border-box;
+}
+
+#debug-log {
+    width: 100%;
+    margin: 10px;
+    border: 2px solid #717171;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: tahoma;
+    font-size: 12px;
+    background: #fff;
+}
+
+body > #debug-log {
+    width: calc(100vw - 40px);
+}
+
+#debug-log td {
+    padding: 5px;
+    border-bottom: 1px solid #888888;
+    border-right: 1px solid #888888;
+    text-align: left;
+    vertical-align: top;
+}
+
+#debug-log td.ac {
+    text-align: center;
+}
+#debug-log td.ar {
+    text-align: right;
+}
+
+#debug-log tr.global-info td:nth-child(1) {
+    font-weight: bold;
+    background: #f1f1f1;
+}
+
+#debug-log tr.process-list-tile td {
+    font-weight: bold;
+    font-size: 16px;
+    background: #b5b5b5;
+    text-transform: uppercase;
+}
+
+#debug-log tr.process-list-sub-tile td {
+    font-weight: bold;
+    font-size: 14px;
+    background: #cacaca;
+    text-transform: uppercase;
+}
+
+#debug-log tr.process-list-head td {
+    font-weight: bold;
+    background: #ddd;
+}
+
+#debug-log tr.process-item td:nth-child(3),
+#debug-log tr.process-item td:nth-child(4),
+#debug-log tr.process-item td:nth-child(5) {
+    background: #fbfbfb;
+}
+#debug-log tr.process-item td:nth-child(6),
+#debug-log tr.process-item td:nth-child(7),
+#debug-log tr.process-item td:nth-child(8),
+#debug-log tr.process-item td:nth-child(9) {
+    background: #f1f1f1;
+}
+
+
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) {
+    width: 25px;
+}
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) span {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #eaeaea;
+    border: 1px solid #b5b5b5;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+}
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) span:hover {
+    background: #d8d8d8;
+    border: 1px solid #636363;    
+}
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) span:before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 2px;
+    background: #636363;
+    position: absolute;
+    top: calc((100% - 2px)/2);
+    left: calc((100% - 12px)/2);
+}
+#debug-log tr.expandable-node[node-idx]:not([expanded]) td:nth-child(1) span:after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 12px;
+    background: #636363;
+    position: absolute;
+    top: calc((100% - 12px)/2);
+    left: calc((100% - 2px)/2);
+}
+#debug-log tr.expandable-node[parent-node-idx][disabled] {
+    display: none;
+}
+
+#debug-log td pre {
+    white-space: pre-wrap;
+}
+</style>
+<table id="debug-log">
+    <colgroup>
+        <col width="25px" />
+        <col width="300px" />
+        <col width="100px" />
+        <col width="60px" />
+        <col width="70px" />
+        <col width="50px" />
+        <col width="100px" />
+        <col width="70px" />
+        <col width="60px" />
+        <col />
+    </colgroup>
+    <tr class="global-info">
+        <td>&nbsp;</td>
+        <td>Server IP</td>
+        <td colspan="8">172.31.18.188</td>
+    </tr>
+    <tr class="global-info">
+        <td>&nbsp;</td>
+        <td>Server time</td>
+        <td colspan="8">12/05/2020 21:02:38</td>
+    </tr>
+    
+    <tr class="process-list-tile expandable-node" node-idx="server-info">
+    <td><span>&nbsp;</span></td>
+    <td colspan="9">$_SERVER</td>
+</tr>
+<tr class="expandable-node" parent-node-idx="server-info" disabled="disabled">
+    <td>&nbsp;</td>
+    <td colspan="9"><pre>Array
+(
+    [USER] => apache
+    [HOME] => /usr/share/httpd
+    [HTTP_EXPECT] => 100-continue
+    [HTTP_CONTENT_LENGTH] => 16849
+    [HTTP_OSC_API_TOKEN] => 15a093fcbbdae6228c090809032d5168
+    [HTTP_CONTENT_TYPE] => application/json
+    [HTTP_ACCEPT] => */*
+    [HTTP_HOST] => uniteelo.com
+    [REDIRECT_STATUS] => 200
+    [SERVER_NAME] => uniteelo.com
+    [SERVER_PORT] => 443
+    [SERVER_ADDR] => 172.31.18.188
+    [REMOTE_PORT] => 40678
+    [REMOTE_ADDR] => 18.221.40.76
+    [SERVER_SOFTWARE] => nginx/1.12.2
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [HTTPS] => on
+    [REQUEST_SCHEME] => https
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [DOCUMENT_ROOT] => /var/www/9prints/store/site/uniteelo.com
+    [DOCUMENT_URI] => /index.php
+    [REQUEST_URI] => /masterSync/index/receive
+    [SCRIPT_NAME] => /index.php
+    [CONTENT_LENGTH] => 16849
+    [CONTENT_TYPE] => application/json
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [SCRIPT_FILENAME] => /var/www/9prints/store/site/uniteelo.com/index.php
+    [FCGI_ROLE] => RESPONDER
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1589338958.7438
+    [REQUEST_TIME] => 1589338958
+)
+</pre></td>
+</tr>        
+    <tr class="process-list-tile expandable-node" node-idx="request-params">
+    <td><span>&nbsp;</span></td>
+    <td colspan="9">$_REQUEST</td>
+</tr>
+<tr class="expandable-node" parent-node-idx="request-params" disabled="disabled">
+    <td>&nbsp;</td>
+    <td colspan="9"><pre>Array
+(
+    [key] => catalog/order
+    [data] => Array
+        (
+            [order] => Array
+                (
+                    [master_record_id] => 3138398
+                    [master_ukey] => 34:945
+                    [shop_id] => 34
+                    [order_id] => 945
+                    [ukey] => UO5YX5ebaccefda925
+                    [cart_id] => 132650
+                    [cart_ukey] => HUT1589298530
+                    [order_status] => open
+                    [payment_status] => paid
+                    [fulfillment_status] => unfulfilled
+                    [process_status] => process
+                    [member_id] => 0
+                    [customer_id] => 712
+                    [email] => claudia.vera@bluewin.ch
+                    [currency_code] => USD
+                    [discount_codes] => []
+                    [shipping_line] => {"carrier":{"key":"table_rate","title":"","ship_from":{"address1":"7192 Sunrise Drive","address2":"","city":"North Richland Hills","country":"United States","province":"Texas","zip":"76180","country_code":"US","province_code":"TX"},"rates":[{"key":"standard","title":"Standard Shipping","amount":799,"estimate_timestamp":1593534048,"processing_timestamp":1590510048}]},"packages":[{"line_id":0,"quantity":1,"weight":{"value":1000,"unit":"g"},"dimension":{"width":0,"height":"0","length":"0","unit":"cm"}}]}
+                    [taxes] => []
+                    [payment_method] => {"key":"paypal","title":null,"object":{"type":"helper","name":"Paypal\/Payment"},"account":{"id":6,"log_id":"6083988","type":"paypal","title":"pay@dlsinc.com","account_info":{"client_id":"AYQPCJNosn9zYZ450fsK7rmq0WOvQtaC9KgvuuVAMhbczyr4Ms5bYw3Nm5Jb4scOZlS4u4S85QTDRru8","client_secret":"EGVE7l1XfkzNy7Qv4_sBatwJrMLE8OlVj0qgl73UQpA87qPPRrseeWGF6IfAWy-g_Fh6pceysldOrlxK"}}}
+                    [payment_data] => {"authid":"9M2240012H122923B","capture_id":"47T57851JM800451N"}
+                    [fraud_data] => []
+                    [fraud_risk_level] => unknown
+                    [subtotal_price] => 2249
+                    [shipping_price] => 799
+                    [tax_price] => 0
+                    [custom_price] => 0
+                    [total_price] => 3048
+                    [paid] => 3048
+                    [refunded] => 0
+                    [shipping_price_refunded] => 0
+                    [client_info] => {"ip":"178.194.183.127","tracking_key":"","user_agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/81.0.4044.138 Safari\/537.36","referer":"","device_type":"desktop","os":"Windows","browser":"Chrome","location":{"city":"Schwanden","region":"Glarus","region_code":"GL","country_code":"CH","country_name":"Switzerland","latitude":"46.9954","longitude":"9.0701","currency_code":"CHF","currency_symbol":"CHF","currency_rate":0.9725},"DLS_SALE_REF":null}
+                    [sref_id] => 
+                    [client_referer] => 
+                    [client_country] => CH
+                    [client_device_type] => desktop
+                    [client_browser] => Chrome
+                    [ab_test] => 
+                    [note] => 
+                    [custom_price_data] => []
+                    [shipping_full_name] => Claudia Vera
+                    [shipping_phone] => 0041763236446
+                    [shipping_company] => 
+                    [shipping_address1] => Sandmattstrasse 1
+                    [shipping_address2] => 
+                    [shipping_city] => Leuzigen
+                    [shipping_province] => Bern
+                    [shipping_province_code] => 
+                    [shipping_country] => Switzerland
+                    [shipping_country_code] => CH
+                    [shipping_zip] => 3297
+                    [billing_full_name] => Claudia Vera
+                    [billing_phone] => 0041763236446
+                    [billing_company] => 
+                    [billing_address1] => Sandmattstrasse 1
+                    [billing_address2] => 
+                    [billing_city] => Leuzigen
+                    [billing_province] => Bern
+                    [billing_province_code] => 
+                    [billing_country] => Switzerland
+                    [billing_country_code] => CH
+                    [billing_zip] => 3297
+                    [added_timestamp] => 1589300463
+                    [modified_timestamp] => 1589300463
+                    [code] => U945
+                    [additional_data] => {"verify_address":1}
+                    [master_lock_flag] => 0
+                )
+
+            [line_items] => Array
+                (
+                    [1068] => Array
+                        (
+                            [master_record_id] => 3581654
+                            [master_ukey] => 34:1068
+                            [order_master_record_id] => 3138398
+                            [item_id] => 1068
+                            [shop_id] => 34
+                            [ukey] => 945:2436:a60f1cb4302375d47c7fb6818c72fcc9
+                            [order_id] => 945
+                            [image_url] => order/1752/mug-11oz.png
+                            [product_id] => 1752
+                            [variant_id] => 2436
+                            [sku] => 5EB273473E8BEXA/mug-enamelCampfire
+                            [vendor] => DungNH
+                            [title] => Personalized Mug - Family - You, Me, And Our Baby, A Perfect Home
+                            [product_type] => mug-enamelCampfire
+                            [options] => [{"title":"Product type","value":"12oz Enamel Campfire"}]
+                            [price] => 2249
+                            [cost] => 0
+                            [quantity] => 1
+                            [refunded_quantity] => 0
+                            [process_quantity] => 1
+                            [fulfilled_quantity] => 0
+                            [require_shipping] => 1
+                            [require_packing] => 0
+                            [weight] => 100
+                            [weight_unit] => kg
+                            [keep_flat] => 0
+                            [dimension_width] => 0
+                            [dimension_height] => 0
+                            [dimension_length] => 0
+                            [custom_data] => [{"key":"campaign","data":{"product_type":"mug-enamelCampfire","title":"12oz Enamel Campfire","price":2249,"compare_at_price":3899,"cost":0,"require_shipping":1,"require_packing":0,"keep_flat":0,"weight":100,"weight_unit":"kg","dimension_width":0,"dimension_height":0,"dimension_length":0,"options":[],"design_merge":{"size":{"width":2400,"height":750},"point":{"front":{"x":556,"y":375},"back":{"x":1844,"y":375}}},"designs":{"front":{"type":"personalizedDesign","design_id":740,"url":"https:\/\/uniteelo.com\/storage\/personalizedDesign\/designImage\/740.png","orig_size":{"width":7800,"height":10000},"size":{"width":586,"height":752},"position":{"x":94,"y":-1},"rotation":0,"option_selected":{"options":{"CeeH2d0128101390":"David & Kathy","abQBys8851547188":"rStbjO8277483141","aamwGb5688544644":"uqgtny715117791857577","oIps6g9988018721":"UdMUjG1789513719","XKnavQ2287170587":"X49irU187326755623383","U02hij1818237886":"ATZK4u5571825821","UxMIXo1788147355":"q49DYz717811175971121","mp5GMC4871488809":"Qptk3A4868765478","JEf12E4575883517":"iX8GJn725189562829186"}},"personalizedDesign":{"svg":"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE svg PUBLIC \"-\/\/W3C\/\/DTD SVG 1.1\/\/EN\" \"http:\/\/www.w3.org\/Graphics\/SVG\/1.1\/DTD\/svg11.dtd\">\n<svg version=\"1.1\" focusable=\"false\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" viewBox=\"0 0 7800 10000\" xml:space=\"preserve\">\n    <defs><filter id=\"filter-CeeH2d0128101390-filter\">\n<feMorphology in=\"SourceAlpha\" result=\"OUTLINE_DILATED\" operator=\"dilate\" radius=\"21.542553191489\"><\/feMorphology>\n<feFlood flood-color=\"rgb(255, 255, 255)\" flood-opacity=\"1\" result=\"OUTLINE_COLOR\"><\/feFlood>\n<feComposite in=\"OUTLINE_COLOR\" in2=\"OUTLINE_DILATED\" operator=\"in\" result=\"OUTLINE\"><\/feComposite>\n<feMerge><feMergeNode in=\"OUTLINE\"><\/feMergeNode><feMergeNode in=\"SourceGraphic\"><\/feMergeNode><\/feMerge>\n<\/filter><style tyle=\"text\/css\">@import url(https:\/\/uniteelo.com\/storage\/personalizedDesign\/fonts\/sweatpants\/sweatpants.css)<\/style>                <\/defs>\n    <g data-document=\"design2d\"><g data-key=\"InC9XO8971178782\" data-layer=\"Art\"><g data-key=\"TRtcHO1751127111\" data-layer=\"Male\"><g data-key=\"abQBys8851547188\" data-layer=\"Maie\"><image xlink:href=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/17.04.2020\/46.5K61Q5e9a91215be70.preview.png\" data-key=\"IiYZue8552977117\" data-layer=\"New_object__5\" width=\"44\" height=\"100\" transform=\"translate(857.05475030765 252.10030803992) scale(93.78348038803 93.78347939472)\" \/><\/g><\/g><g data-key=\"crxcOl2772285811\" data-layer=\"FeMale\"><g data-key=\"U02hij1818237886\" data-layer=\"Female\"><image xlink:href=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.W88H35e9ab45b9f096.preview.png\" data-key=\"UxMIXo1788147355\" data-layer=\"New_object__21\" width=\"55\" height=\"100\" transform=\"translate(2442.7124274243 1745.0719099333) scale(78.534467918158 78.534490152279)\" \/><\/g><\/g><g data-key=\"EeLKqb6089115011\" data-layer=\"T__c_n___\"><g data-key=\"mp5GMC4871488809\" data-layer=\"T__c_n___\"><image xlink:href=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.5O4SS5e9ab7592e258.preview.png\" data-key=\"QIrPbq7577757211\" data-layer=\"New_object__31\" width=\"26\" height=\"100\" transform=\"rotate(1.8714454174042 5991.748038197 4302.1947208636) translate(5322.8829391986 1909.7321142979) scale(51.451161461419 47.849252131313) scale(-1 1) translate(-26 0)\" \/><\/g><\/g><g data-key=\"NkMtYe8353382924\" data-layer=\"T__c_nam\"><g data-key=\"oIps6g9988018721\" data-layer=\"T__c_nam\"><image xlink:href=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.528VS5e9af3514ee08.preview.png\" data-key=\"CGGRUL1161114111\" data-layer=\"New_object__17\" width=\"94\" height=\"100\" transform=\"rotate(10.923732995987 3210.3801564583 1093.7949393033) translate(2290.6395211604 145.30338269274) scale(19.568949687189 18.969831132211) scale(-1 1) translate(-94 0)\" \/><\/g><\/g><g data-key=\"tIWeEf8500588171\" data-layer=\"Hoa\"><image xlink:href=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/17.04.2020\/46.ZB6V75e9a94bae4a52.preview.png\" data-key=\"ZGL2QX8888998481\" data-layer=\"New_object__24\" width=\"106\" height=\"100\" transform=\"translate(1999.6165476433 834.98470269956) scale(40.245904886498 40.245908203125)\" \/><\/g><text data-key=\"CeeH2d0128101390\" data-layer=\"Name\" font-family=\"sweatpants\" font-size=\"861.70212765957\" font-weight=\"normal\" font-style=\"normal\" letter-spacing=\"0\" word-spacing=\"0\" alignment-baseline=\"top\" dominant-baseline=\"top\" text-anchor=\"middle\" filter=\"url(#filter-CeeH2d0128101390-filter)\" fill=\"#000\">\n    <tspan y=\"9594.0689014598\" alignment-baseline=\"top\" dominant-baseline=\"top\" text-anchor=\"middle\" x=\"4005.6374934047\">Lars &amp; Claudia<\/tspan>\n<\/text><\/g><\/g>\n<\/svg>","config":{"CeeH2d0128101390":"Lars & Claudia","abQBys8851547188":"wZ9XH68171191517","IiYZue8552977117":"e8tNTm586676898187888","oIps6g9988018721":"zkL5aC2117441208","CGGRUL1161114111":"pGj7bk711533351182258","U02hij1818237886":"ATZK4u5571825821","UxMIXo1788147355":"xTq9q0181851110598181","mp5GMC4871488809":"i407UR4771918898","QIrPbq7577757211":"BONzAV771178718589751"},"config_preview":{"document_type":{"layer":"Document Type","form":"Document Type","value":"design2d"},"CeeH2d0128101390":{"layer":"Name","form":"You And Your Partner","value":"Lars & Claudia"},"abQBys8851547188":{"layer":"Maie","form":"Male Skin Color","value":"Tan"},"IiYZue8552977117":{"layer":"New object #5","form":"Tan","value":"<img src=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/17.04.2020\/46.5K61Q5e9a91215be70.thumb.png\" title=\"e8tNTm586676898187888\" \/> Untitled group - Untitled image 1"},"oIps6g9988018721":{"layer":"T\u00f3c nam","form":"Male Hair Style","value":"Undercut"},"CGGRUL1161114111":{"layer":"New object #17","form":"Undercut","value":"<img src=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.528VS5e9af3514ee08.thumb.png\" title=\"pGj7bk711533351182258\" \/> Untitled group - Untitled image 1"},"U02hij1818237886":{"layer":"Female","form":"Female Skin Color","value":"Light"},"UxMIXo1788147355":{"layer":"New object #21","form":"Light","value":"<img src=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.W88H35e9ab45b9f096.thumb.png\" title=\"xTq9q0181851110598181\" \/> Untitled group - Untitled image 5"},"mp5GMC4871488809":{"layer":"T\u00f3c n\u1eef","form":"Female Hair Style","value":"Long Length"},"QIrPbq7577757211":{"layer":"New object #31","form":"Long Length","value":"<img src=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.5O4SS5e9ab7592e258.thumb.png\" title=\"BONzAV771178718589751\" \/> Untitled group - Untitled image 16"}}},"design_area":{"title":"Front","area":{"width":776,"height":750}},"manual_render":0,"design_url":"http:\/\/personalizeddesign.9prints.com\/storage\/catalog\/campaign\/design\/34\/945\/1068\/1589300463\/front.png"},"back":{"type":"personalizedDesign","design_id":749,"url":"https:\/\/uniteelo.com\/storage\/personalizedDesign\/designImage\/749.png","orig_size":{"width":7800,"height":10000},"size":{"width":589,"height":755},"position":{"x":93,"y":-2},"rotation":0,"option_selected":{"options":{"cNN6zA8806590889":"JozPk91188134310"}},"personalizedDesign":{"svg":"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE svg PUBLIC \"-\/\/W3C\/\/DTD SVG 1.1\/\/EN\" \"http:\/\/www.w3.org\/Graphics\/SVG\/1.1\/DTD\/svg11.dtd\">\n<svg version=\"1.1\" focusable=\"false\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" viewBox=\"0 0 7800 10000\" xml:space=\"preserve\">\n    <defs><\/defs>\n    <g data-document=\"design2d\"><g data-key=\"vm5apK9157809881\" data-layer=\"Quote\"><g data-key=\"cNN6zA8806590889\" data-layer=\"Quote\"><image xlink:href=\"https:\/\/uniteelo.com\/storage\/personalizedDesign\/design\/images\/18.04.2020\/46.TNJ3I5e9a9d1e02c8a.preview.png\" data-key=\"qx4puZ5656599811\" data-layer=\"New_object__20\" width=\"75\" height=\"100\" transform=\"translate(196.89559936523 88.977661132812) scale(98.682688802083 98.6826953125)\" \/><\/g><\/g><\/g>\n<\/svg>","config":{"cNN6zA8806590889":"N7v76J8315130111"},"config_preview":{"document_type":{"layer":"Document Type","form":"Document Type","value":"design2d"},"cNN6zA8806590889":{"layer":"Quote","form":"Choose Your Quote","value":"Happy 1st Father's day"}}},"design_area":{"title":"Back","area":{"width":776,"height":750}},"manual_render":0,"design_url":"http:\/\/personalizeddesign.9prints.com\/storage\/catalog\/campaign\/design\/34\/945\/1068\/1589300463\/back.png"}},"design_timestamp":1589300463,"design_url":"http:\/\/personalizeddesign.9prints.com\/storage\/catalog\/campaign\/design\/34\/945\/1068\/1589300463\/design.png"}}]
+                            [custom_price_data] => {"combo":[],"buy_design":[],"mug_size":[]}
+                            [additional_data] => []
+                            [discount] => []
+                            [added_timestamp] => 1589300463
+                            [modified_timestamp] => 1589300463
+                        )
+
+                )
+
+            [transactions] => Array
+                (
+                    [5581538] => Array
+                        (
+                            [record_id] => 5581538
+                            [master_ukey] => 
+                            [order_master_record_id] => 3138398
+                            [shop_id] => 34
+                            [order_id] => 945
+                            [member_id] => 0
+                            [transaction_type] => capture
+                            [amount] => 3048
+                            [transaction_data] => []
+                            [note] => 
+                            [added_timestamp] => 1589301050
+                        )
+
+                )
+
+            [fulfillments] => Array
+                (
+                )
+
+            [process] => Array
+                (
+                )
+
+            [logs] => Array
+                (
+                    [19374958] => Array
+                        (
+                            [record_id] => 19374958
+                            [master_ukey] => 
+                            [shop_id] => 34
+                            [order_master_record_id] => 3138398
+                            [order_id] => 945
+                            [member_id] => 0
+                            [action_key] => PLACE
+                            [action_title] => Claudia Vera placed this order.
+                            [content] => ""
+                            [added_timestamp] => 1589300468
+                        )
+
+                    [19374959] => Array
+                        (
+                            [record_id] => 19374959
+                            [master_ukey] => 
+                            [shop_id] => 34
+                            [order_master_record_id] => 3138398
+                            [order_id] => 945
+                            [member_id] => 0
+                            [action_key] => EMAIL_CONFIRM
+                            [action_title] => Order confirmation email was sent to Claudia Vera (claudia.vera@bluewin.ch).
+                            [content] => {"flag_resend":1}
+                            [added_timestamp] => 1589300468
+                        )
+
+                    [19375161] => Array
+                        (
+                            [record_id] => 19375161
+                            [master_ukey] => 
+                            [shop_id] => 34
+                            [order_master_record_id] => 3138398
+                            [order_id] => 945
+                            [member_id] => 0
+                            [action_key] => CAPTURE
+                            [action_title] => Captured $30.48 on Paypal
+                            [content] => ""
+                            [added_timestamp] => 1589301050
+                        )
+
+                    [19386501] => Array
+                        (
+                            [record_id] => 19386501
+                            [master_ukey] => 
+                            [shop_id] => 34
+                            [order_master_record_id] => 3138398
+                            [order_id] => 945
+                            [member_id] => 0
+                            [action_key] => PROCESS
+                            [action_title] => trangle process 1 items
+                            [content] => ""
+                            [added_timestamp] => 1589338683
+                        )
+
+                    [19387151] => Array
+                        (
+                            [record_id] => 19387151
+                            [master_ukey] => 
+                            [shop_id] => 34
+                            [order_master_record_id] => 3138398
+                            [order_id] => 945
+                            [member_id] => 0
+                            [action_key] => MASTER_ORDER_DESK
+                            [action_title] => Order After submit to District Photo
+                            [content] => ""
+                            [added_timestamp] => 1589338926
+                        )
+
+                )
+
+            [processV2] => Array
+                (
+                    [661012] => Array
+                        (
+                            [record_id] => 661012
+                            [master_ukey] => 
+                            [shop_id] => 34
+                            [member_id] => 0
+                            [order_id] => 945
+                            [ukey] => J90MJ5ebb615203c56
+                            [line_items] => {"1068":{"before_quantity":1,"process_quantity":1}}
+                            [quantity] => 1
+                            [service] => district_photo
+                            [queue_flag] => 0
+                            [error_message] => 
+                            [added_timestamp] => 1589338683
+                            [modified_timestamp] => 1589338683
+                            [order_master_record_id] => 3138398
+                        )
+
+                )
+
+        )
+
+)
+</pre></td>
+</tr>        
+    
+    <tr class="global-info">
+    <td>&nbsp;</td>
+    <td>Total process</td>
+    <td colspan="8">15</td>
+</tr class="global-info">
+<tr class="global-info">
+    <td>&nbsp;</td>
+    <td>Total time</td>
+    <td colspan="8">47.936 ms</td>
+</tr class="global-info">
+<tr class="global-info">
+    <td>&nbsp;</td>
+    <td>Memory peak</td>
+    <td colspan="8">2.00MB</td>
+</tr>            
+</table>
+<script>
+function osc_debug_toggler() {
+    var to_expand = false;
+        
+    if(this.hasAttribute('expanded')) {
+        this.removeAttribute('expanded');
+    } else {
+        this.setAttribute('expanded', 1);
+        to_expand = true;
+    }
+
+    var child_nodes = document.getElementById('debug-log').querySelectorAll('[parent-node-idx="' + this.getAttribute('node-idx') + '"]');
+
+    for(var i = 0; i < child_nodes.length; i ++){
+        if(to_expand) {
+            child_nodes[i].removeAttribute('disabled');
+        } else {    
+            if(child_nodes[i].hasAttribute('node-idx') && child_nodes[i].hasAttribute('expanded')) {
+                osc_debug_toggler.apply(child_nodes[i]);
+            }
+    
+            child_nodes[i].setAttribute('disabled', 'disabled');
+        }
+    }
+}
+        
+var process_nodes = document.getElementById('debug-log').querySelectorAll('[node-idx]');
+
+for(var i = 0; i < process_nodes.length; i ++){
+    process_nodes[i].onclick = osc_debug_toggler;
+}
+</script>

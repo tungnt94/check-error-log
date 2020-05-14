@@ -1,0 +1,257 @@
+<style>
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#debug-log,
+#debug-log * {
+    box-sizing: border-box;
+}
+
+#debug-log {
+    width: 100%;
+    margin: 10px;
+    border: 2px solid #717171;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: tahoma;
+    font-size: 12px;
+    background: #fff;
+}
+
+body > #debug-log {
+    width: calc(100vw - 40px);
+}
+
+#debug-log td {
+    padding: 5px;
+    border-bottom: 1px solid #888888;
+    border-right: 1px solid #888888;
+    text-align: left;
+    vertical-align: top;
+}
+
+#debug-log td.ac {
+    text-align: center;
+}
+#debug-log td.ar {
+    text-align: right;
+}
+
+#debug-log tr.global-info td:nth-child(1) {
+    font-weight: bold;
+    background: #f1f1f1;
+}
+
+#debug-log tr.process-list-tile td {
+    font-weight: bold;
+    font-size: 16px;
+    background: #b5b5b5;
+    text-transform: uppercase;
+}
+
+#debug-log tr.process-list-sub-tile td {
+    font-weight: bold;
+    font-size: 14px;
+    background: #cacaca;
+    text-transform: uppercase;
+}
+
+#debug-log tr.process-list-head td {
+    font-weight: bold;
+    background: #ddd;
+}
+
+#debug-log tr.process-item td:nth-child(3),
+#debug-log tr.process-item td:nth-child(4),
+#debug-log tr.process-item td:nth-child(5) {
+    background: #fbfbfb;
+}
+#debug-log tr.process-item td:nth-child(6),
+#debug-log tr.process-item td:nth-child(7),
+#debug-log tr.process-item td:nth-child(8),
+#debug-log tr.process-item td:nth-child(9) {
+    background: #f1f1f1;
+}
+
+
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) {
+    width: 25px;
+}
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) span {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #eaeaea;
+    border: 1px solid #b5b5b5;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+}
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) span:hover {
+    background: #d8d8d8;
+    border: 1px solid #636363;    
+}
+#debug-log tr.expandable-node[node-idx] td:nth-child(1) span:before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 2px;
+    background: #636363;
+    position: absolute;
+    top: calc((100% - 2px)/2);
+    left: calc((100% - 12px)/2);
+}
+#debug-log tr.expandable-node[node-idx]:not([expanded]) td:nth-child(1) span:after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 12px;
+    background: #636363;
+    position: absolute;
+    top: calc((100% - 12px)/2);
+    left: calc((100% - 2px)/2);
+}
+#debug-log tr.expandable-node[parent-node-idx][disabled] {
+    display: none;
+}
+
+#debug-log td pre {
+    white-space: pre-wrap;
+}
+</style>
+<table id="debug-log">
+    <colgroup>
+        <col width="25px" />
+        <col width="300px" />
+        <col width="100px" />
+        <col width="60px" />
+        <col width="70px" />
+        <col width="50px" />
+        <col width="100px" />
+        <col width="70px" />
+        <col width="60px" />
+        <col />
+    </colgroup>
+    <tr class="global-info">
+        <td>&nbsp;</td>
+        <td>Server IP</td>
+        <td colspan="8">172.31.18.188</td>
+    </tr>
+    <tr class="global-info">
+        <td>&nbsp;</td>
+        <td>Server time</td>
+        <td colspan="8">22/03/2020 16:12:56</td>
+    </tr>
+    
+    <tr class="process-list-tile expandable-node" node-idx="server-info">
+    <td><span>&nbsp;</span></td>
+    <td colspan="9">$_SERVER</td>
+</tr>
+<tr class="expandable-node" parent-node-idx="server-info" disabled="disabled">
+    <td>&nbsp;</td>
+    <td colspan="9"><pre>Array
+(
+    [USER] => apache
+    [HOME] => /usr/share/httpd
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate, br
+    [HTTP_REFERER] => https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-0BD51402WL8521047
+    [HTTP_ACCEPT_LANGUAGE] => en-us
+    [HTTP_USER_AGENT] => Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Mobile/15E148 Safari/604.1
+    [HTTP_COOKIE] => _ga=GA1.2.1617584065.1584910087; _gac_UA-89778757-47=1.1584910089.Cj0KCQjwmdzzBRC7ARIsANdqRRnTSCQmD_RpdvPndT6bhmr7iuRIifjT87hjS4BbJA551T2Au-6DomwaAkqJEALw_wcB; _gid=GA1.2.1868586846.1584910087; _ga=GA1.1.1617584065.1584910087; _gac_UA-89778757-47=1.1584910089.Cj0KCQjwmdzzBRC7ARIsANdqRRnTSCQmD_RpdvPndT6bhmr7iuRIifjT87hjS4BbJA551T2Au-6DomwaAkqJEALw_wcB; _gid=GA1.1.1868586846.1584910087; _dc_gtm_UA-89778757-47=1; _gat_gtag_UA_89778757_47=1; _fbp=fb.1.1584910093535.1497655088; catalog/recently_viewed_products=%5B428%2C455%5D; uniteelo__com-checkout=6373; b545a9ed05da6a17ccac10b21c806a84=5e77cf09078db3V5UEU73586575; currency_code=USD; location_currency_code=USD; render_currency_price=%7B%22currency_code%22%3A%22USD%22%2C%22rate%22%3A1%2C%22icon%22%3A%22%24%22%7D; PHPSESSID=sn80uh3tg4e74ll98309b175jo; uniteelo__com-cart=MSS1584910082
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    [HTTP_HOST] => uniteelo.com
+    [REDIRECT_STATUS] => 200
+    [SERVER_NAME] => uniteelo.com
+    [SERVER_PORT] => 443
+    [SERVER_ADDR] => 172.31.18.188
+    [REMOTE_PORT] => 64373
+    [REMOTE_ADDR] => 98.18.103.153
+    [SERVER_SOFTWARE] => nginx/1.12.2
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [HTTPS] => on
+    [REQUEST_SCHEME] => https
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [DOCUMENT_ROOT] => /var/www/9prints/store/site/uniteelo.com
+    [DOCUMENT_URI] => /index.php
+    [REQUEST_URI] => /en/checkout/index/place/paypal_flag/success/payment_method/paypal?paymentId=PAYID-LZ35JSA1X623696TB482780W&token=EC-0BD51402WL8521047&PayerID=JN44W4U4EEA36
+    [SCRIPT_NAME] => /index.php
+    [CONTENT_LENGTH] => 
+    [CONTENT_TYPE] => 
+    [REQUEST_METHOD] => GET
+    [QUERY_STRING] => paymentId=PAYID-LZ35JSA1X623696TB482780W&token=EC-0BD51402WL8521047&PayerID=JN44W4U4EEA36
+    [SCRIPT_FILENAME] => /var/www/9prints/store/site/uniteelo.com/index.php
+    [FCGI_ROLE] => RESPONDER
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1584911571.4705
+    [REQUEST_TIME] => 1584911571
+)
+</pre></td>
+</tr>        
+    <tr class="process-list-tile expandable-node" node-idx="request-params">
+    <td><span>&nbsp;</span></td>
+    <td colspan="9">$_REQUEST</td>
+</tr>
+<tr class="expandable-node" parent-node-idx="request-params" disabled="disabled">
+    <td>&nbsp;</td>
+    <td colspan="9"><pre>Array
+(
+    [paymentId] => PAYID-LZ35JSA1X623696TB482780W
+    [token] => EC-0BD51402WL8521047
+    [PayerID] => JN44W4U4EEA36
+    [paypal_flag] => success
+    [payment_method] => paypal
+)
+</pre></td>
+</tr>        
+    
+    <tr class="global-info">
+    <td>&nbsp;</td>
+    <td>Total process</td>
+    <td colspan="8">91</td>
+</tr class="global-info">
+<tr class="global-info">
+    <td>&nbsp;</td>
+    <td>Total time</td>
+    <td colspan="8">5,299.614 ms</td>
+</tr class="global-info">
+<tr class="global-info">
+    <td>&nbsp;</td>
+    <td>Memory peak</td>
+    <td colspan="8">2.00MB</td>
+</tr>            
+</table>
+<script>
+function osc_debug_toggler() {
+    var to_expand = false;
+        
+    if(this.hasAttribute('expanded')) {
+        this.removeAttribute('expanded');
+    } else {
+        this.setAttribute('expanded', 1);
+        to_expand = true;
+    }
+
+    var child_nodes = document.getElementById('debug-log').querySelectorAll('[parent-node-idx="' + this.getAttribute('node-idx') + '"]');
+
+    for(var i = 0; i < child_nodes.length; i ++){
+        if(to_expand) {
+            child_nodes[i].removeAttribute('disabled');
+        } else {    
+            if(child_nodes[i].hasAttribute('node-idx') && child_nodes[i].hasAttribute('expanded')) {
+                osc_debug_toggler.apply(child_nodes[i]);
+            }
+    
+            child_nodes[i].setAttribute('disabled', 'disabled');
+        }
+    }
+}
+        
+var process_nodes = document.getElementById('debug-log').querySelectorAll('[node-idx]');
+
+for(var i = 0; i < process_nodes.length; i ++){
+    process_nodes[i].onclick = osc_debug_toggler;
+}
+</script>
