@@ -1,6 +1,4 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+
 const fs = require('fs');
 const http = require('http');
 const path = require("path");
@@ -9,13 +7,12 @@ const util = require('util');
 // Convert fs.readFile into Promise version of same    
 const readFile = util.promisify(fs.readFile);
 var csvWriter = require('csv-write-stream');
-var csvFilename = "/home/tungnt/Desktop/Nodejs/checkerror/file.csv";
 
-let Folder = '/home/tungnt/Desktop/Nodejs/checkerror/var_www_9prints_store_site_uniteelo_com_var_debug_13_May_2020_tar/debug/error';
+var csvFilename =  __dirname +"/file.csv";
 
-const _dirFloder = 'var_www_9prints_store_site_uniteelo_com_var_debug_13_May_2020_tar/debug/error';
+var Folder = '/home/tungnt/Desktop/node/check-error-log/var_www_9prints_store_site_uniteelo_com_var_debug_13_May_2020_tar/debug/error';
 
-// get all list floder error 
+//get all list floder error 
 var folder_list = fs.readdirSync(Folder).map(file => {
     return file;
 });
@@ -31,14 +28,6 @@ for(let i = 0; i < data_dir.length; i++) {
     });
     getErrorMessageFileName(list_file_of_folder);
 }
-// console.log(data_dir);
-
-// var list_file_of_folder = fs.readdirSync(folder_children).map(file => {
-//     return file;
-// });
-
-// console.log(list_file_of_folder);
-//getErrorMessageFileName(list_file_of_folder);
 
 function getErrorMessageFileName(list_file_of_folder){
     if(Array.isArray(list_file_of_folder)){
@@ -47,10 +36,8 @@ function getErrorMessageFileName(list_file_of_folder){
             //var isFile =  readFile(folder_children+"/"+list_file_of_folder[i],'utf8');
             getStuff(list_file_of_folder[i],'utf8').then
             (data => {
-            // console.log(data);
                 try {
                     var $ = cheerio.load(data);
-                    //var title = $('.global-info').children().text();
                     var title = $('.global-info > td').map(function(){
                         return $(this).text().trim();
                     }).get();
@@ -64,6 +51,21 @@ function getErrorMessageFileName(list_file_of_folder){
                         if(title[i] == 'Error file'){
                             result[title[i]] = title[i] + ": " + title[i+1];
                         }
+                        if(title[i] == 'Server time'){
+                            result[title[i]] = title[i] + ": " + title[i+1];
+                        }
+                        if(title[i] == 'Server IP'){
+                            result[title[i]] = title[i] + ": " + title[i+1];
+                        }
+                        if(title[i] == 'Total process'){
+                            result[title[i]] = title[i] + ": " + title[i+1];
+                        }
+                        if(title[i] == 'Total time'){
+                            result[title[i]] = title[i] + ": " + title[i+1];
+                        }
+                        if(title[i] == 'Memory peak'){
+                            result[title[i]] = title[i] + ": " + title[i+1];
+                        }
                     }
                     result["Full error"] = title.join(' ');
                     
@@ -71,11 +73,15 @@ function getErrorMessageFileName(list_file_of_folder){
                         writer = csvWriter({sendHeaders: false});
                         writer.pipe(fs.createWriteStream(csvFilename));
                         writer.write({
-                            header1: 'name_file',
-                            header2: 'dir_name',
-                            header3: 'error_message',
-                            header4: 'error_file',
-                            header5: 'full_error'
+                            header1: 'Server IP',
+                            header2: 'Server time',
+                            header3: 'Error message',
+                            header4: 'Error file',
+                            header5: 'Total process',
+                            header6: 'Total time',
+                            header7: 'Memory peak',
+                            header8: 'file',
+                            header9: 'Full path'
                         });
                         writer.end();
                     }
@@ -84,14 +90,17 @@ function getErrorMessageFileName(list_file_of_folder){
                     writer = csvWriter({sendHeaders: false});
                     writer.pipe(fs.createWriteStream(csvFilename, {flags: 'a'}));
                     writer.write({
-                    header1: list_file_of_folder[i].split('/').slice(-1).pop(),
-                    header2: list_file_of_folder[i],
+                    header1: result['Server IP'],
+                    header2: result['Server time'],
                     header3: result['Error message'],
                     header4: result['Error file'],
-                    header5: result['Full error']
+                    header5: result['Total process'],
+                    header6: result['Total time'],
+                    header7: result['Memory peak'],
+                    header8: list_file_of_folder[i].split('/').slice(-1).pop(),
+                    header9: list_file_of_folder[i],
                     });
                     writer.end();
-                    // return result;
                 } catch (error) {
                     console.log(error);
                 }
@@ -106,7 +115,3 @@ function getStuff(data) {
     return readFile(data,'utf8');
 }
 
-// https://stackoverflow.com/questions/46867517/how-to-read-file-with-async-await-properly
-
-
-app.listen(port, () => {console.log('app listen port' + port);});
